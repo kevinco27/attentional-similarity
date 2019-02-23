@@ -50,15 +50,6 @@ Run ```main.py``` script and specify the dataset name
         $ python main.py --dn ESC_noise_50
 
 ### 3. Test with trained model
-Run ```main_test.py``` script and specify the dataset name
-
-- ESC50
-
-        $ python main_test.py --dn ESC_50
-
-- noise ESC50
-        
-        $ python main_test.py --dn ESC_noise_50
 #### 3.1 Specify cuda device
 It's an optional choice to modify ```CUDA_VISIBLE_DEVICES``` in ```Tester.py``` to specify the gpu device that the model is going to run on. The default setting is ```0```
 
@@ -69,7 +60,7 @@ It's an optional choice to modify ```CUDA_VISIBLE_DEVICES``` in ```Tester.py``` 
 Set model path ```pmp``` in ```main_test.py``` to the path that store the model you are going to test. 
 
 #### 3.3 Start testing
-Run ```main_test.py``` script and specify the dataset
+Run ```main_test.py``` script and specify the dataset name
 
 - ESC50
 
