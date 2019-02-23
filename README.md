@@ -2,7 +2,7 @@
 
 Pytorch implementation of [Learning to match transient sound events using attentional similarity for few-shot sound recognition] ([paper](https://arxiv.org/abs/1812.01269))
 
-## Citation
+## ICASSP2019
 If you use this code in your research, please cite our paper.
 
     @misc{chou2018learning,
@@ -74,6 +74,4 @@ Run ```main_test.py``` script and specify the dataset name
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
 
