@@ -1,5 +1,5 @@
 import os
-os.environ['CUDA_VISIBLE_DEVICES'] = '3'
+os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 import torch
 import torch.optim as optim
@@ -10,9 +10,6 @@ import time
 import sys
 sys.path.append('./net')
 from fun import *
-#from fast_hyper_protnet_att import *
-#from hyper_protnet_att import *
-#from protnet import *
 from protnet_att import *
 from loader import *
 from data_gentor import *
@@ -20,8 +17,7 @@ from data_gentor import *
 class Tester:
     def run(self):
         self.Tester()
-        #return self.Show_pred().astype(int)
-        return self.Show_embed()
+        return self.Show_pred()
     
     def Show_embed(self):
         self.model.eval()
@@ -112,16 +108,10 @@ class Tester:
                 X, Y = Variable(X.cuda()), Variable(self.Y.cuda())
                 X = X.view(-1, 1, 128,160)
                 pred  = self.model(X, self.Xavg, self.Xstd, n, m)
-                #pred = pred.view(-1,n,m).mean(-1)
-                #pred, _ = torch.max(pred, -1)
+
                 # Max
                 _, pred = torch.max(pred.data, 1)
                 correct += (pred==n-1).sum().item()
-                #correct += pred.eq(4).cpu().sum()
-                # Mean
-                #pred = pred.view(5,5).mean(1)
-                #_, pred = torch.max(pred.data, 0)
-                #correct += int(pred.item()==4)
             oprint = '%s %d-way %d-shot acc:%f Time:%1f'%(vate, n, m, correct/float(total), time.time() - st)
             print oprint
             te_print.append(oprint)
@@ -156,18 +146,4 @@ class Tester:
         print self.model
         # show params
         print show_model_params(self.model)
-        
-    
-    def Saver(self, e):
-        save_dict = {}
-        directory = '../model/%s'%(self.model.module.model_name)
-
-        if not os.path.exists(directory):
-            os.makedirs(directory)
-
-        save_dict['state_dict'] = self.model.state_dict()
-        save_dict['result'] = self.result
-        #torch.save(save_dict, directory +'/epoch_%d'%(e))
-        torch.save(save_dict, directory +'/BEST_MODEL')
-        print directory
 

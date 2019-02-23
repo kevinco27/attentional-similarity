@@ -2,13 +2,11 @@ import argparse
 from Tester import *
 
 # pre_trained model path
-pmp = '../model/ESC_noise_50_ProtNet_att/BEST_MODEL'
-#pmp = '../model/ESC_noise_50_ProtNet/BEST_MODEL'
-#pmp = '../model/ProtNet/BEST_MODEL'
+pmp = '../model/ESC_50_ProtNet_att/BEST_MODEL'
 
 # params for audio feature extraction (mel-spectrogram)
 parser = argparse.ArgumentParser(description= 'PyTorch Implementation for few-shot sound recognition')
-parser.add_argument('--dn',  default='ESC-noise-50', type=str, help='dataset name')
+parser.add_argument('--dn',  default='ESC_50', type=str, help='dataset name')
 parser.add_argument('--sr',  default=16000, type=int, help='[fea_ext] sample rate')
 parser.add_argument('--ws',  default=2048,  type=int, help='[fea_ext] windows size')
 parser.add_argument('--hs',  default=497,   type=int, help='[fea_ext] hop size')
