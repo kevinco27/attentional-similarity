@@ -1,6 +1,6 @@
 # Few-shot sound recognition using attentional similarity
 
-Pytorch implementation of [Learning to match transient sound events using attentional similarity for few-shot sound recognition] ([paper](https://arxiv.org/abs/1812.01269))
+Pytorch implementation of [Learning to match transient sound events using attentional similarity for few-shot sound recognition] ([paper](https://arxiv.org/abs/1812.01269))
 
 ## Citation
 If you use this code in your research, please cite our paper.
@@ -39,7 +39,7 @@ It's an optional choice to modify ```CUDA_VISIBLE_DEVICES``` in ```Trainer.py```
     os.environ['CUDA_VISIBLE_DEVICES'] = '0'
 
 #### 2.2 Start training
-Run ```main.py``` script and specify the dataset
+Run ```main.py``` script and specify the dataset name
 
 - ESC50
 
@@ -50,7 +50,7 @@ Run ```main.py``` script and specify the dataset
         $ python main.py --dn ESC_noise_50
 
 ### 3. Test with trained model
-Run ```main_test.py``` script and specify the dataset
+Run ```main_test.py``` script and specify the dataset name
 
 - ESC50
 
