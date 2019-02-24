@@ -2,16 +2,14 @@
 
 Pytorch implementation of [Learning to match transient sound events using attentional similarity for few-shot sound recognition] ([paper](https://arxiv.org/abs/1812.01269))
 
-## ICASSP2019
+## Citation
 If you use this code in your research, please cite our paper.
 
-    @misc{chou2018learning,
+    @inproceedings{chou2019learning,
         title={Learning to match transient sound events using attentional similarity for few-shot sound recognition},
         author={Szu-Yu Chou and Kai-Hsiang Cheng and Jyh-Shing Roger Jang and Yi-Hsuan Yang},
-        year={2018},
-        eprint={1812.01269},
-        archivePrefix={arXiv},
-        primaryClass={cs.SD}
+        booktitle = {Proceedings of the International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+        year={2019}
     }
 
 ## Requirements
@@ -22,8 +20,8 @@ If you use this code in your research, please cite our paper.
 - Cuda-9.0
 
 ## Getting Started
-### 1. Download the mel-spec data of ESC50 ([Link](https://drive.google.com/open?id=1dWiqIc8xTBN4wYPwiYObegWVM7J5oLkm))
-We provide the mel-spectrogram data, which extracted from wave files with default parameters showed in ```main.py```. Please unzip ```data.zip``` and have ```data``` under ```attentional-similarity``` folder.
+### 1. Mel-spec data of (noise) ESC50 ([link](https://drive.google.com/open?id=1dWiqIc8xTBN4wYPwiYObegWVM7J5oLkm))
+We provide the mel-spectrogram data, which extracted from wave files with default parameters showed in ```main.py```. Once the data acquired, please unzip ```data.zip``` and have ```data``` under ```attentional-similarity``` folder.
 
 **```data``` contains following files :**
 - ```ESC_sep.npy```: mel-spec of ESC50
