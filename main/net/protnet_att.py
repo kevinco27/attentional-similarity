@@ -28,15 +28,21 @@ class net(nn.Module):
         self.G3 = GLU(ks*2, ks*3, (1,1))
         self.att = nn.Conv2d(ks*3, ks*3, (3,3), padding=(1,1), bias=False)
 
+    def nn_att(self, inp, att):
+        att_out = att(inp)  # (130, 384, 8, 10)
+        att_out = F.softmax(att_out.view(att_out.size(0), att_out.size(1), -1), dim=2)  # (130, 384, 80)
+
+        att_sc = att_out.sum(1).view(att_out.size(0), 1, att_out.size(2))  # (130, 1, 80)
+        att_sc = att_sc / att_out.size(1)
+        att_sc = att_sc.repeat(1, att_out.size(1), 1)  # (130, 384, 80)
+        return att_sc
+
     def forward(self, x, xavg, xstd, n=5, m=5):
-        # n: n-way
-        # m: m-shot
         zx = (x - xavg) / xstd  # (130, 1, 128, 160)
         G1 = self.G1(zx)  # (130, 128, 32, 40)
         G2 = self.G2(G1)  # (130, 256, 8, 10)
         G3 = self.G3(G2)  # (130, 384, 8, 10)
-        att = self.att(G3)  # (130, 384, 8, 10)
-        att = F.softmax(att.view(att.size(0), att.size(1), -1), dim=2)  # (130, 384, 80)
+        att = self.nn_att(G3, self.att)
         embed = G3.view(G3.size(0), G3.size(1), -1) * att  # (130, 384, 80)
         embed = embed.sum(-1)  # (130, 384)
         embed = embed.view(-1, n * m + 1, embed.size(1))  # (5, 26, 384)
