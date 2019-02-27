@@ -33,7 +33,7 @@ class net(nn.Module):
         att_out = F.softmax(att_out.view(att_out.size(0), att_out.size(1), -1), dim=2)  # (130, 384, 80)
 
         att_sc = att_out.sum(1).view(att_out.size(0), 1, att_out.size(2))  # (130, 1, 80)
-        att_sc = att_sc / att_out.size(1)
+        att_sc = att_sc.div(att_out.size(1))
         att_sc = att_sc.repeat(1, att_out.size(1), 1)  # (130, 384, 80)
         return att_sc
 
